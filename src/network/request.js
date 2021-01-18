@@ -13,6 +13,7 @@ export function request(config) {
     }, err => {
 
     })
+    
     //响应拦截
     instance.interceptors.response.use(res => {
       return res.data

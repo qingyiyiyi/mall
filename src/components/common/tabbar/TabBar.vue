@@ -20,5 +20,6 @@ export default {
     bottom: 0;
     /* border-top: 1px solid #002648 */;
     box-shadow: 0px -2px 1px rgba(100,100,100,.15);
+    z-index: 9;
   }
 </style>

@@ -37,8 +37,8 @@ export default {
     flex: 1;
   }
   .recommends img{
-    width: 85%;
-    height: 69%;
+    width: 65px;
+    height: 65px;
   margin-bottom: 12px;
   }
 </style>
