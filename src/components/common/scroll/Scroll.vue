@@ -15,6 +15,10 @@ export default {
     probeType: {
       type: Number,
       default: 0
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -26,7 +30,7 @@ export default {
     //1、创建BScroll对象
     this.scroll = new BScroll(this.$refs.wrapper, {
       probeType: this.probeType,
-      pullUpLoad: true,
+      pullUpLoad: this.pullUpLoad,
       click: true,
     })
 
@@ -35,14 +39,25 @@ export default {
       this.$emit('scroll', position)
     })
 
-    //3、到达底部触发上啦加载更多
+    //3、监听到达底部触发上拉加载更多
     this.scroll.on('pullingUp' , () => {
-      console.log('上拉加载更多');
+      this.$emit('pullingUp')
     })
+
+
   },
   methods: {
     scrollTo(x, y, time=500) {
-      this.scroll.scrollTo(x, y, time)
+      this.scroll && this.scroll.scrollTo(x, y, time)
+    },
+
+    finishPullUp() {
+      this.scroll &&  this.scroll.finishPullUp()
+    },
+
+    refresh() {
+      console.log('<-请求30张图片的次数');
+      this.scroll &&  this.scroll.refresh()
     }
   }
 }
