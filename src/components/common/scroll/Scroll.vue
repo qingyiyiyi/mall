@@ -58,6 +58,10 @@ export default {
     refresh() {
       console.log('<-请求30张图片的次数');
       this.scroll &&  this.scroll.refresh()
+    },
+
+    getScrollY() {
+      return this.scroll ? this.scroll.y : 0
     }
   }
 }

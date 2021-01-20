@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: "tabControl",
   props: {
     titles: {
       type: Array,
@@ -34,13 +35,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .tab-control{
     display: flex;
     text-align: center;
     font-size: 15px;
     background-color: #ffffff;
-    z-index: 8;
   }
 
   .tab-control-item{

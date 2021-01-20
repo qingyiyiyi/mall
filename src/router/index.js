@@ -7,6 +7,9 @@ const Sort = () => import('../views/sort/Sort.vue')
 const Cart = () => import('../views/cart/Cart.vue')
 const Mine = () => import('../views/mine/Mine.vue')
 
+const Detail = () => import('../views/detail/Detail.vue')
+
+
 //1、安装插件
 vue.use(VueRouter)
 
@@ -31,6 +34,10 @@ vue.use(VueRouter)
   {
     path: '/mine',
     component: Mine
+  },
+  {
+    path: '/detail/:iid',
+    component: Detail
   }
  ]
 
