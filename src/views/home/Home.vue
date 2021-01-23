@@ -7,6 +7,7 @@
                   ref="tabControl1"
                   class="tav-control"
                   v-show="isTabFixed"></tab-control>
+
     <scroll class="content"
             ref="scroll"
             :probe-type="3"
@@ -41,6 +42,7 @@ import BackTop from 'components/content/backTop/BackTop';
 
 import {getHomeMultidata, getHomeGoods} from 'network/home';
 import {debounce} from 'common/utils';
+import {itemListenerMixin} from 'common/mixin';
 
 
 export default {
@@ -54,6 +56,10 @@ export default {
     Scroll,
     BackTop
   },
+
+  //混入
+  mixins: [itemListenerMixin],
+
   data() {
     return {
       banners: [],
@@ -68,6 +74,7 @@ export default {
       tabOffsetTop:0,
       isTabFixed:false,
       saveY: 0
+
     }
   },
   computed: {
@@ -80,11 +87,11 @@ export default {
     this.$refs.scroll.refresh()
   },
   deactivated() {
-    
+      //保存y值
       this.saveY = this.$refs.scroll.getScrollY()
-      console.log(this.saveY);
+      /* console.log(this.saveY); */
 
-
+      this.$bus.$off('itemImageLoad', this.itemImgListener)
   },
   created() {
       //1、请求多个数据
@@ -96,13 +103,6 @@ export default {
       this.getHomeGoods('sell')
     },
     mounted() {
-      //3、监听item图片加载完成，使用的防抖函数，节省了服务器请求的次数，第一个参数是一个函数，第二个参数是延迟时间
-      const refresh = debounce(this.$refs.scroll.refresh, 200)
-      //$bus总线，为了节省GoodsListItem向Scroll请求的操作步骤，可以在mian.js中设置一个 Vue.prototype.$bus = new Vue()
-      //总线接收GoodsListItem传过来的数据让图片接收一张就刷新一次，而设置防抖函数就是为了不让刷新次数太多，可以集中几次一起请求。
-      this.$bus.$on('itemImageLoad', () => {
-        refresh()
-      })
 
 
     },
@@ -133,7 +133,7 @@ export default {
       //设置图片在什么距离
       contentScroll(position) {
         //1、判断BackTop是否显示
-        this.isShow = (-position.y) > 1090
+        this.isShow = (-position.y) > 470
 
         //2、决定tabControl是否吸顶(position: fixed)
         this.isTabFixed = (-position.y) > this.tabOffsetTop
@@ -160,7 +160,7 @@ export default {
       getHomeGoods(type) {
         const page = this.goods[type].page + 1
           getHomeGoods(type, page).then(res => {
-            console.log(res);
+            /* console.log(res); */
             this.goods[type].list.push(...res.data.list)
             this.goods[type].page += 1
 

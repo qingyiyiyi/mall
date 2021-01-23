@@ -9,6 +9,14 @@ export function getDetail(iid) {
   })
 }
 
+
+export function getRecommend() {
+  return request({
+    url: '/api/m5/recommend',
+  })
+}
+
+
 //给多个数据封装到一个对象里，到时候调用一个对象就可以了
 export class Goods {
   constructor(itemInfo, columns, services) {
@@ -31,5 +39,13 @@ export class Shop{
     this.sells = shopInfo.cSells
     this.score = shopInfo.score
     this.goodsCount = shopInfo.cGoods
+  }
+}
+
+export class GoodsParam {
+  constructor(info, rule) {
+    this.image = info.image ? info.image[0] : '';
+    this.infos = info.set;
+    this.sizes = rule.tables;
   }
 }

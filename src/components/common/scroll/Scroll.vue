@@ -56,7 +56,7 @@ export default {
     },
 
     refresh() {
-      console.log('<-请求30张图片的次数');
+      /* console.log('<-请求30张图片的次数'); */
       this.scroll &&  this.scroll.refresh()
     },
 
