@@ -6,19 +6,20 @@
     </nav-bar>
 
     <!-- 商品列表 -->
-
+    <scroll class="content" ref="scroll">
       <cart-list/>
-
+    </scroll>
 
 
     <!-- 底部汇总 -->
-
+    <cart-bottom-bar/>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navbar/NavBar';
 import CartList from './childComps/CartList';
+import CartBottomBar from './childComps/CartBottomBar';
 
 import Scroll from 'components/common/scroll/Scroll';
 
@@ -28,6 +29,7 @@ export default {
   components: {
     NavBar,
     CartList,
+    CartBottomBar,
     Scroll
   },
   computed: {
@@ -40,15 +42,34 @@ export default {
     ...mapGetters({
       length: 'cartLength'
     })
+  },
+  methods: {
+
+  },
+  activated() {
+    this.$refs.scroll.refresh()
   }
 }
 </script>
 
 <style scoped>
+  #cart{
+    height: 100vh;
+    position: relative;
+    background-color: #fff;
+  }
+  .content{
+    position: absolute;
+    top: 44px;
+    bottom: 89px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
   .cart-nav-bar{
     position: relative;
     z-index: 15;
     color: white;
-    background-color: #ff5777;
+    background-color: #FF8198;
   }
 </style>
