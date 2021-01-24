@@ -2,7 +2,7 @@
   <div id="detail">
     <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
 
-    <scroll class="content1" ref="scroll" @scroll="contentScroll" :probe-type="3">
+    <scroll class="content" ref="scroll" @scroll="contentScroll" :probe-type="3">
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
@@ -218,12 +218,6 @@ export default {
     height: 100vh;
     z-index: 10;
   }
-/*   .wrapper{
-    position: relative;
-    background-color: #fff;
-    height: 100vh;
-    z-index: 10;
-  } */
 
   .detail-nav{
     position: relative;
@@ -231,16 +225,15 @@ export default {
     background-color: #fff;
   }
 
-  .content1{
-    /* position: absolute; */
-    /* top: 44px;
-    bottom: 0px;
+  .content{
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
     left: 0;
-    right: 0; */
-    height: calc( 100% - 93px );
-
-
+    right: 0;
+    overflow: hidden;
   }
+
   .bottom{
     font-size: 15px;
     background-color: #ff5777;
