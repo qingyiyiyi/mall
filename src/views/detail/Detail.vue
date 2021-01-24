@@ -3,7 +3,6 @@
     <detail-nav-bar class="detail-nav" @titleClick="titleClick" ref="nav"/>
 
     <scroll class="content1" ref="scroll" @scroll="contentScroll" :probe-type="3">
-
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
@@ -15,7 +14,7 @@
     </scroll>
 
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addCart="addCart"/>
 
   </div>
 </template>
@@ -192,6 +191,20 @@ export default {
         }
       }
 
+    },
+
+    addCart() {
+      //1、获取购物车需要展示的信息
+      const product = {}
+      product.image = this.topImages[0]
+      product.title = this.goods.title
+      product.desc = this.goods.desc
+      product.price = this.goods.realPrice
+      product.iid = this.iid
+
+      //2、将商品添加到购物车里
+      //this.$store.cartList.push(prouct)
+      this.$store.dispatch('addCart', product)
     }
 
   }
