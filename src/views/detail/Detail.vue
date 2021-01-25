@@ -14,6 +14,7 @@
     </scroll>
 
     <back-top @click.native="backClick" v-show="isShowBackTop"/>
+
     <detail-bottom-bar @addCart="addCart"/>
 
   </div>
@@ -35,6 +36,7 @@ import Scroll from 'components/common/scroll/Scroll';
 import GoodsList from 'components/content/goods/GoodsList';
 import BackTop from 'components/content/backTop/BackTop';
 
+
 import {getDetail, getRecommend, Goods, Shop, GoodsParam} from 'network/detail';
 import {debounce} from 'common/utils';
 import {itemListenerMixin} from 'common/mixin';
@@ -53,7 +55,8 @@ export default {
 
     Scroll,
     GoodsList,
-    BackTop
+    BackTop,
+
 
   },
   //混入
@@ -75,7 +78,8 @@ export default {
       //记录滚动区间的index
       currentIndex: 0,
       //记录返回顶部什么时候显示
-      isShowBackTop: false
+      isShowBackTop: false,
+
     }
   },
   created() {
@@ -204,7 +208,19 @@ export default {
 
       //2、将商品添加到购物车里
       //this.$store.cartList.push(prouct)
-      this.$store.dispatch('addCart', product)
+      this.$store.dispatch('addCart', product).then(res => {
+        /* this.show = true
+        this.message = res
+        setTimeout(() => {
+          this.show = false
+          this.message = ''
+        },2000) */
+        this.$toast.show(res, 2000)
+      })
+
+      /* this.addCart(product).then(res => {
+        this.$toast.show(res, 2000)
+      }) */
     }
 
   }

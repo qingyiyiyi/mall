@@ -1,20 +1,23 @@
 <template>
-  <div class="shop-item">
-    <div class="item-selector">
-      <check-button @click.native="checkClick" :is-checked="itemInfo.checked"/>
-    </div>
-    <div class="item-img">
-      <img :src="itemInfo.image" alt="商品图片">
-    </div>
-    <div class="item-info">
-      <div class="item-title">{{itemInfo.title}}</div>
-      <div class="item-desc">{{itemInfo.desc}}</div>
-      <div class="info-bottom">
-        <div class="item-price left">￥{{itemInfo.price}}</div>
-        <div class="item-count right">x{{itemInfo.count}}</div>
+
+    <div class="shop-item">
+      <div class="item-selector">
+        <check-button @click.native="checkClick" :is-checked="itemInfo.checked"/>
+      </div>
+      <div class="item-img">
+        <img :src="itemInfo.image" alt="商品图片">
+      </div>
+      <div class="item-info">
+        <div class="item-title">{{itemInfo.title}}</div>
+        <div class="item-desc">{{itemInfo.desc}}</div>
+        <div class="info-bottom">
+          <div class="item-price left">￥{{itemInfo.price}}</div>
+          <div class="item-count right">x{{itemInfo.count}}</div>
+        </div>
       </div>
     </div>
-  </div>
+
+
 </template>
 
 <script>
@@ -32,11 +35,12 @@ export default {
       }
     }
   },
-   methods: {
+  methods: {
       checkClick() {
         this.itemInfo.checked = !this.itemInfo.checked
       }
-    }
+  },
+
 }
 </script>
 
@@ -47,6 +51,7 @@ export default {
     font-size: 0;
     padding: 5px;
     border-bottom: 1px solid #ccc;
+    background-color: #fff;
   }
 
   .item-selector{
