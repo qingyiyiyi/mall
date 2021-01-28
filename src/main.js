@@ -23,7 +23,7 @@ Vue.use(VueLazyload, {
 
 
 //解决移动端300ms的延迟
-FastClick.attach(document.body )
+FastClick.attach(document.body)
 
 new Vue({
   render: h => h(App),

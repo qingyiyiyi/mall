@@ -19,10 +19,10 @@ export const itemListenerMixin = {
       }
 
       //$bus总线，为了节省GoodsListItem向Scroll请求的操作步骤，可以在mian.js中设置一个 Vue.prototype.$bus = new Vue()
-      //总线接收GoodsListItem传过来的数据让图片接收一张就刷新一次，而设置防抖函数就是为了不让刷新次数太多，可以集中几次一起请求。
+      //总线接收GoodsListItem传过来的数据让图片接收一张就刷新一次，
       this.$bus.$on('itemImageLoad', this.itemImgListener)
 
-     
+
   },
   methods: {
 
