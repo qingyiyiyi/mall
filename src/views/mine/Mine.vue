@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style scoped>
+ #mine {
+   height: 100vh;
+   background-color: rgb(243, 243, 243);
+ }
  .mine-nav{
     background-color: var(--color-tint);
     color: white;
