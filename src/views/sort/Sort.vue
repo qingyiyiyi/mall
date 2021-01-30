@@ -71,7 +71,6 @@ export default {
   },
 
   activated() {
-    this.$store.commit("setLoading", true);
     this.$refs.scroll.scrollTo(0, this.saveY, 0)
      this.$refs.scroll.refresh()
   },
